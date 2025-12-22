@@ -9,7 +9,7 @@ Modern student life is scattered across chats, links, and lost posts — **OneBI
 
 ## 🚀 Live Preview
 
-🔗 [**Explore the App Live**]() — No sign-up required!
+🔗 [**Explore the App Live**](https://one-bi-tstop.vercel.app) — No sign-up required!
 
 ---
 
@@ -70,7 +70,7 @@ No more lost info. No more chaos. Just connection.
 Want to run it locally? Clone the repo and fire it up:
 
 ```bash
-git clone 
+git clone https://github.com/Nikhil10510/OneBITstop.git
 npm install
 npm run dev
 ```
@@ -103,7 +103,7 @@ Planned enhancements to take it from helpful to unmissable:
 
 ## 👨‍💻 Author
 
-Made with ❤️ by [BITians]()
+Made with ❤️ by [BITians](https://www.linkedin.com/in/nikhil-kumar-4918a6312)
 Feel free to connect or drop feedback!
 
 ---
@@ -111,7 +111,7 @@ Feel free to connect or drop feedback!
 ## 📬 Feedback & Contributions
 
 Open to suggestions and contributions!
-Submit an issue, fork the repo, or reach out via [LinkedIn]().
+Submit an issue, fork the repo, or reach out via [LinkedIn](https://www.linkedin.com/in/nikhil-kumar-4918a6312).
 
 ---
 

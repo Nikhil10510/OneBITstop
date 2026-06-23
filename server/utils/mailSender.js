@@ -15,7 +15,6 @@ const mailSender = async (email,title,body) =>{
       },
         })
 
-        // Inside mailSender.js
         let info = await transporter.sendMail({
             from: `"OneBITstop" <${process.env.EMAIL_USER}>`, // Best format for Gmail
             to: email, 
@@ -25,7 +24,8 @@ const mailSender = async (email,title,body) =>{
         return info;
     }
     catch(error){
-        console.log(error);
+        console.error("Nodemailer Error:", error);
+        throw error; // Re-throw error so the controller can detect and report it
     }
 }
 

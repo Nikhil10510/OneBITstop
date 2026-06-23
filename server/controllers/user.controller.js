@@ -76,7 +76,13 @@ export const registerUser = async (req, res) => {
     try {
       await mailSender(newUser.email, emailTitle, emailBody);
     } catch (mailError) {
-      console.error("Mail Helper Error:", mailError);
+      console.error("Mail Helper Error during signup:", mailError);
+      await User.findByIdAndDelete(newUser._id);
+      return res.status(500).json({
+        message: `Failed to send verification email: ${mailError.message}. Please check your credentials or network configuration.`,
+        success: false,
+        error: mailError.message
+      });
     }
 
     return res.status(201).json({

@@ -1,35 +1,29 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import dotenv from "dotenv";
 dotenv.config();
 
-const mailSender = async (email,title,body) =>{
-    try{
-        let transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 465,
-            secure: true, // use SSL
-            auth:{
-                user:process.env.EMAIL_USER,
-                pass:process.env.EMAIL_PASS
-            },
-            tls: {
-                rejectUnauthorized: false,
-            },
-        })
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-        let info = await transporter.sendMail({
-            from: `"OneBITstop" <${process.env.EMAIL_USER}>`, // Best format for Gmail
-            to: email, 
+const mailSender = async (email, title, body) => {
+    try {
+        const { data, error } = await resend.emails.send({
+            from: "OneBITstop <onboarding@resend.dev>",
+            to: [email],
             subject: title,
             html: body,
         });
-        return info;
-    }
-    catch(error){
-        console.error("Nodemailer Error:", error);
-        throw error; // Re-throw error so the controller can detect and report it
-    }
-}
 
+        if (error) {
+            console.error("Resend API Error:", error);
+            throw new Error(error.message);
+        }
 
-export default mailSender;
+        console.log("Email sent successfully:", data?.id);
+        return data;
+    } catch (error) {
+        console.error("mailSender Error:", error);
+        throw error;
+    }
+};
+
+export default mailSender;
